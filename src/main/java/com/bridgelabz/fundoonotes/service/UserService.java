@@ -5,6 +5,7 @@ import com.bridgelabz.fundoonotes.exception.UserException;
 import com.bridgelabz.fundoonotes.model.UserModel;
 import com.bridgelabz.fundoonotes.repository.UserRepository;
 import com.bridgelabz.fundoonotes.util.Response;
+import com.bridgelabz.fundoonotes.util.ResponseClass;
 import com.bridgelabz.fundoonotes.util.ResponseUtil;
 import com.bridgelabz.fundoonotes.util.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -161,7 +162,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Boolean validate(String token) {
+    public Boolean validateToken(String token) {
         Long userId = tokenUtil.decodeToken(token);
         Optional<UserModel> isId = userRepository.findById(userId);
         if (isId.isPresent()) {
@@ -225,5 +226,16 @@ public class UserService implements IUserService {
             throw new UserException(400, "Token is wrong");
         }
 
+    }
+
+    @Override
+    public ResponseClass validateEmail(String email) {
+        Long userId = tokenUtil.decodeToken(email);
+        Optional<UserModel> isIdPresent = userRepository.findById(userId);
+        if (isIdPresent.isPresent()) {
+            return new ResponseClass(200, "User not found", isIdPresent.get());
+        } else {
+            throw new UserException(400, "User not found");
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.bridgelabz.fundoonotes.service;
 import com.bridgelabz.fundoonotes.dto.UserDTO;
 import com.bridgelabz.fundoonotes.model.UserModel;
 import com.bridgelabz.fundoonotes.util.Response;
+import com.bridgelabz.fundoonotes.util.ResponseClass;
 import com.bridgelabz.fundoonotes.util.ResponseUtil;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public interface IUserService {
 
     public Response resetPassword(String emailId);
 
-    public Boolean validate(String token);
+
 
     public Response restoreUser(Long id, String token);
 
@@ -33,4 +34,7 @@ public interface IUserService {
 
     public Response deletePermanent(Long id, String token);
 
+    public Boolean validateToken(String token);
+
+    ResponseClass validateEmail(String Email);
 }

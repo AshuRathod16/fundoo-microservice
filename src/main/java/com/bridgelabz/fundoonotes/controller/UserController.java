@@ -4,6 +4,7 @@ import com.bridgelabz.fundoonotes.dto.UserDTO;
 import com.bridgelabz.fundoonotes.model.UserModel;
 import com.bridgelabz.fundoonotes.service.IUserService;
 import com.bridgelabz.fundoonotes.util.Response;
+import com.bridgelabz.fundoonotes.util.ResponseClass;
 import com.bridgelabz.fundoonotes.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -75,9 +76,15 @@ public class UserController {
     }
 
     @GetMapping("/validate/{token}")
-    public Boolean validate(@PathVariable String token) {
-        return userService.validate(token);
+    public Boolean validateToken(@PathVariable String token) {
+        return userService.validateToken(token);
     }
+    @GetMapping("/validate/{email}")
+    public ResponseEntity<ResponseClass> validateEmail(@PathVariable String email) {
+        ResponseClass responseClass = userService.validateEmail(email);
+        return new ResponseEntity<>(responseClass, HttpStatus.OK);
+    }
+
 
     @PutMapping("/restoreUser")
     public ResponseEntity<Response> restoreUser(@RequestParam Long id, @RequestHeader String token) {

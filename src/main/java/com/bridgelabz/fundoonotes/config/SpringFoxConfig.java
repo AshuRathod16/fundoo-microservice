@@ -172,7 +172,7 @@ public class SpringFoxConfig {
 
     private ApiInfo apiInfo() {
 
-        return new ApiInfo("Learner Management System",
+        return new ApiInfo("Fundoo User Service",
 
                 "APIs for E.",
 
@@ -180,7 +180,7 @@ public class SpringFoxConfig {
 
                 "Terms of service",
 
-                new Contact("Learner Management System", "http://bridgelabz.com&quot", "rashwini510@gmail.com"),
+                new Contact("Fundoo User Service", "http://bridgelabz.com&quot", "rashwini510@gmail.com"),
 
                 "Apache 2.0",
 
